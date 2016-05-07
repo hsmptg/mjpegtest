@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Streaming from the R-Pi Camera Module</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $(window).ready(function() {
+            // This function stops our camera when the page is navigated away from
+            window.onbeforeunload = function() {
+                $.ajax({
+                    url: 'http://192.168.1.222:8080/?stream=stop',
+                    success: function(data) {
+                    },
+                    error: function() {
+                    }
+                });
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>Live Video</h1>
+    <img src="http://192.168.1.222:8080/?stream=start" width="640" height="480">
+</body>
+</html>
