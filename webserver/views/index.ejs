@@ -9,7 +9,7 @@
             // This function stops our camera when the page is navigated away from
             window.onbeforeunload = function() {
                 $.ajax({
-                    url: 'http://127.0.0.1:8080/?stream=stop',
+                    url: 'http://<%=IP%>:<%=port%>/?stream=stop',
                     success: function(data) {
                     },
                     error: function() {
@@ -21,6 +21,6 @@
 </head>
 <body>
     <h1>Live Video</h1>
-    <img src="http://127.0.0.1:8080/?stream=start" width="640" height="480">
+    <img src="http://<%=IP%>:<%=port%>/?stream=start" width="640" height="480">
 </body>
 </html>

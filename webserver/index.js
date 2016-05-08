@@ -4,10 +4,13 @@ var app = express();
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
+var os = require('os');
+var ip = os.networkInterfaces().eth0.address;
+
 app.get('/', function(req, res) {
-    res.render('index');
+    res.render('index', { IP: ip, port: "8080"});
 });
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('Access webpage at http://' + ip + ':3000');
 });

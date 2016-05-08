@@ -19,12 +19,8 @@ Next we need to clone the project from GitHub and install the dependencies:
 * `npm --prefix webserver install`
 
 ## Execution
-Start by executing (in backgroud) the Web server
-* `node webserver/index.js &`
-
-Then execute the MJPEG streamer:
-* `cd mjpegstreamer`
-* `node app.js`
+To execute both node programs use the following script:
+* `bash start.sh`
 
 ## Testing
 To see the webpage with the live stream, just open the following link:
