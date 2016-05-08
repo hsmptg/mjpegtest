@@ -7,7 +7,6 @@ var python;
 http.createServer(function(req, res) {
   // Parse our incoming URL.
   var url = require('url').parse(req.url, true);
-  console.log(url);
 
   // Start the stream.
   if (url.query.stream == "start") {
@@ -15,16 +14,15 @@ http.createServer(function(req, res) {
       // Init the mjpeg-server.
       reqHandler = mjpegServer.createReqHandler(req, res);
 
-      // http://udgwebdev.com/node-js-para-leigos-child-process
-      python = spawn('python',["camera.py"]);
+      python = spawn('python3',["camera.py"]);
       console.log('camera started.');
 
       var bufArray = [];
       python.stdout.on('data', function (data) {
         bufArray.push(data);
         var buf = Buffer.concat(bufArray);
+        // if buf start with "ff d8 ..." and ends with "... ff d9" is a jpeg frame
         if (buf[0]==255 && buf[1]==216 && buf[buf.length-2]==255 && buf[buf.length-1]==217) {
-          console.log(bufArray.length);
           reqHandler.update(buf);
           bufArray = [];
         }
